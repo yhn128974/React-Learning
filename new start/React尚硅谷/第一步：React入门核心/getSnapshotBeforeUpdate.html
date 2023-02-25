@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    class NewLists extends React.Component {
+      state = {
+        newsArray: [],
+      };
+      componentDidMount() {
+        setInterval(() => {
+          const { newsArray } = this.state;
+          const news = "新闻" + (newsArray.length + 1);
+          this.setState({
+            newsArray: [news, ...newsArray],
+          });
+        }, 1000);
+      }
+      //   componentWillUnmount() {
+      //     clearInterval(timer);
+      //   }
+
+      getSnapshotBeforeUpdate() {  
+        return this.refs.list.scollHeight;
+      }
+      componentDidUpdate(perProps, preState, height) {
+        this.refs.list.scollTop += this.refs.list.scrollHeight - height;
+      }
+      render() { 
+        return (
+          <div className="container" ref="list">
+            {this.state.newsArray.map((news, index) => {
+              return (
+                <div className="news" key={index}>
+                  {news}
+                </div>
+              );
+            })}
+          </div>
+        );
+      }
+    }
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<NewLists></NewLists>);
+  </script>
+  <style>
+    .container {
+      width: 100px;
+      height: 100px;
+      background: skyblue;
+      overflow: auto;
+    }
+  </style>
+</html>
