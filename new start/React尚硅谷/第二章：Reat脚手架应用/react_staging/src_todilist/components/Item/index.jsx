@@ -10,8 +10,9 @@ export default class Item extends Component {
   };
   clearing = () => {
     let id = this.props.id;
-    // console.log(id);
-    this.props.handleClearing(id);
+    if (window.confirm("确定删除吗？")) {
+      this.props.handleClearing(id);
+    }
   };
   handleCheck = (event) => {
     let id = this.props.id;
@@ -19,7 +20,6 @@ export default class Item extends Component {
   };
   render() {
     const { id, name, done } = this.props;
-
     return (
       <li
         style={{ backgroundColor: this.state.mouse ? "#ddd" : "white" }}
@@ -27,11 +27,7 @@ export default class Item extends Component {
         onMouseLeave={this.handeMouse(false)}
       >
         <label>
-          <input
-            type="checkbox"
-            defaultChecked={done}
-            onChange={this.handleCheck}
-          />
+          <input type="checkbox" checked={done} onChange={this.handleCheck} />
           <span>{name}</span>
         </label>
         <button
