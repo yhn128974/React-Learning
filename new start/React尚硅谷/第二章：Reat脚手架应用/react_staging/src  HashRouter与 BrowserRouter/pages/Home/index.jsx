@@ -5,6 +5,11 @@ import MyNavLink from "../../components/myNavLink";
 import { Switch, Redirect, Route } from "react-router-dom";
 
 export default class Home extends Component {
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.history.push(`/home/message`)
+    },2000)
+  }
   render() {
     return (
       <div>
