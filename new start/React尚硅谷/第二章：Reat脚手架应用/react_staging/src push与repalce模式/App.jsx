@@ -34,11 +34,11 @@ export default class App extends Component {
               >
                 Home
               </NavLink> */}
-            
-              <MyNavLink  to="/about">
+              {/* 添加replace模式 */}
+              <MyNavLink replace to="/about">
                 About
               </MyNavLink>
-              <MyNavLink  to="/home">
+              <MyNavLink replace to="/home">
                 Home
               </MyNavLink>
             </div>

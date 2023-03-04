@@ -1,30 +1,8 @@
 import React, { Component } from "react";
-import { Switch, Redirect, Route, Link } from "react-router-dom";
+import { Switch, Redirect, Route } from "react-router-dom";
 import MyNavLink from "../../../components/myNavLink";
 import Detail from "./Detail";
 export default class index extends Component {
-  go = () => {
-    this.props.history.go(2);
-  };
-  goBack = () => {
-    this.props.history.goBack();
-  };
-  goForward = () => {
-    this.props.history.goForward();
-  };
-  replaceShow = (id, title) => {
-    // replace+parms参数
-    // this.props.history.replace(`/home/message/detail/${id}/${title}`);
-    // replace+search参数
-    // this.props.history.replace(`/home/message/detail/?id=${id}&title=${title}`);
-    //repalce+state参数
-    this.props.history.replace(`/home/message/detail/`, { id, title });
-  };
-  pushShow = (id, title) => {
-    // this.props.history.push(`/home/message/detail/${id}/${title}`);
-    // this.props.history.push(`/home/message/detail/?id=${id}&title=${title}`);
-    this.props.history.push(`/home/message/detail/`, { id, title });
-  };
   state = {
     messageArr: [
       {
@@ -49,22 +27,21 @@ export default class index extends Component {
             return (
               <li key={message.id}>
                 {/* //传递params参数 */}
-                {/* <Link
+                {/* <MyNavLink
                   to={`/home/message/detail/${message.id}/${message.title}`}
                 >
                   {message.title}
-                </Link>
-      
+                </MyNavLink> */}
+
                 {/* //search参数 */}
-                {/* <Link
+                {/* <MyNavLink
                   to={`/home/message/detail/? id=${message.id}&title=${message.title}`}
                 >
                   {message.title}
-                </Link>
-
+                </MyNavLink> */}
 
                 {/* 向路由传递state参数 */}
-                <Link
+                <MyNavLink
                   replace
                   to={{
                     pathname: "/home/message/detail",
@@ -72,21 +49,7 @@ export default class index extends Component {
                   }}
                 >
                   {message.title}
-                </Link>
-                &nbsp;
-                <button
-                  onClick={() => {
-                    this.pushShow(message.id, message.title);
-                  }}
-                >
-                  push查看
-                </button>
-                &nbsp;
-                <button
-                  onClick={() => this.replaceShow(message.id, message.title)}
-                >
-                  replace查看
-                </button>
+                </MyNavLink>
               </li>
             );
           })}
@@ -104,11 +67,6 @@ export default class index extends Component {
 
           {/* <Redirect to="/home/message/detail/:id/:title"></Redirect> */}
         </Switch>
-
-        <hr></hr>
-        <button onClick={this.goBack}>Back</button>
-        <button onClick={this.goForward}>Forward</button>
-        <button onClick={this.go}>GO</button>
       </div>
     );
   }
