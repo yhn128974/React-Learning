@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Redirect ,BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import Home1 from "./pages/Home1";
 import About from "./pages/About";
 import MyNavLink from "./components/myNavLink";
 
@@ -35,19 +36,21 @@ export default class App extends Component {
                 Home
               </NavLink> */}
 
-              <MyNavLink to="/about">About</MyNavLink>
+              <MyNavLink to="/atguigu/about">About</MyNavLink>
               <MyNavLink to="/home">Home</MyNavLink>
+              <MyNavLink to="/">Home1</MyNavLink>
             </div>
           </div>
           <div className="col-xs-6">
             <div className="panel">
               <div className="panel-body">
                 {/* 注册路由 */}
-                <Switch>
-                  <Route path="/about" component={About} />
-                  <Route path="/home" component={Home} />
-                  <Redirect to="/about" />
-                </Switch>
+                <Routes>
+                  <Route path="/atguigu/about" element={<About></About>} />
+                  <Route path="/home" element={<Home></Home>} />
+                  <Route path="/" element={<Home1></Home1>} />
+                  <Redirect to="/home"></Redirect>
+                </Routes>
               </div>
             </div>
           </div>
