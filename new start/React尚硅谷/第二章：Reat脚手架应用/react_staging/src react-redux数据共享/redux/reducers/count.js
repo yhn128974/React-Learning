@@ -1,5 +1,5 @@
 //initSate=0;
-import { DECREMENT, INCREMENT } from "./constant";
+import { DECREMENT, INCREMENT } from "../constant";
 
 const initState = 0;
 
