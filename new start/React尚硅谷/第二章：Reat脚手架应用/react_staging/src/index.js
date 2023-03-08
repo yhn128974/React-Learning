@@ -10,6 +10,7 @@ const Root = ReactDOM.createRoot(document.getElementById("root"));
 Root.render(
   <React.StrictMode>
     <BrowserRouter>
+      {/* 用preovider包裹App，目的是所有app的后代组件都能接受store */}
       <Provider store={store}>
         <App />
       </Provider>

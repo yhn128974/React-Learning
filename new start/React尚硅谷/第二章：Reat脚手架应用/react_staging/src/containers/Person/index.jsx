@@ -17,7 +17,7 @@ class Person extends Component {
   render() {
     return (
       <div>
-            <h2> I AM PEROSN Component, the top count is { this.props.count}</h2>
+        <h2> I AM PEROSN Component, the top count is {this.props.count}</h2>
         <input
           type="text"
           placeholder="输入名字"
@@ -45,10 +45,10 @@ class Person extends Component {
 
 export default connect(
   (state) => {
-        return {
-            persons: state.perosnReducer,
-            count: state.countReducer,
-        };
+    return {
+      persons: state.perosnReducer,
+      count: state.countReducer,
+    };
   },
   {
     createAddPersonAction,

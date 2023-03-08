@@ -4,9 +4,9 @@ import React, { Component } from "react";
 import store from "../../redux/store";
 // 引入action
 import {
-  createInCrementAction,
-  createDeCrementAction,
-  createInCrementAsyncAction,
+  inCrement,
+  deCrement,
+  inCrementAsync,
 } from "../../redux/actions/count";
 
 const Count = class extends Component {
@@ -20,28 +20,31 @@ const Count = class extends Component {
   increment = () => {
     // console.log(this.selectNumber.value);
     const { value: data } = this.selectNumber;
-    this.props.jia(data * 1);
+    this.props.inCrement(data * 1);
   };
 
   decrement = () => {
     const { value: data } = this.selectNumber;
-    this.props.jian(data * 1);
+    this.props.deCrement(data * 1);
   };
 
   incrementOfOdd = () => {
     const { value: data } = this.selectNumber;
-    if (store.getState() % 2 !== 0) this.props.jia(data * 1);
+    if (this.props.count % 2 !== 0) this.props.inCrement(data * 1);
   };
 
   crementAsync = () => {
     const { value: data } = this.selectNumber;
-    this.props.Asyncjia(data * 1, 500);
+    this.props.inCrementAsync(data * 1, 500);
   };
 
   render() {
     return (
       <div>
-        <h1>当前求和为{this.props.count},下方组件总人数为{ this.props.personsNumber}</h1>
+        <h1>
+          当前求和为{this.props.count},下方组件总人数为
+          {this.props.personsNumber}
+        </h1>
         <div className="context">
           <select ref={(value) => (this.selectNumber = value)}>
             <option value="1">1</option>
@@ -91,8 +94,8 @@ export default connect(
   },
   //   mapDispatchToProps可以是一个对象
   {
-    jia: createInCrementAction,
-    jian: createDeCrementAction,
-    Asyncjia: createInCrementAsyncAction,
+    inCrement,
+    deCrement,
+    inCrementAsync,
   }
 )(Count);
